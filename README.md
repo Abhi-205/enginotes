@@ -1,11 +1,170 @@
-<div align="center">
+# EngiNotes - College & Engineering Study Hub 🎓📚
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+EngiNotes is a modern, responsive web application for engineering students and educators to discover, preview, share, and verify semester course notes, handwritten summaries, past year university exam solutions (PYQs), and formula cheat sheets across major engineering departments.
 
-  <h1>Built with AI Studio</h2>
+---
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 🌟 Key Features
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+- **Department-Wise Academic Directory**:
+  - Computer Science & Engineering (CSE)
+  - Electronics & Communication (ECE)
+  - Mechanical Engineering (MECH)
+  - Civil Engineering (CIVIL)
+  - Electrical & Electronics Engineering (EEE)
+  - AI & Data Science (AIDS)
+  - Information Technology (IT)
 
-</div>
+- **8-Semester Syllabus Breakdown**:
+  - Full semester curriculum coverage with subject codes, credits, and module units.
+  - One-click filtering for notes aligned to specific course units.
+
+- **In-Browser Document Reader**:
+  - Multi-page document preview with zoom controls (80% - 140%).
+  - Highlighted formulas, theorems, and code snippets.
+  - Interactive 5-star rating system and instant PDF download.
+
+- **Peer-to-Peer Contributor Portal**:
+  - Drag-and-drop document upload (PDF, DOCX, PPT).
+  - Live card preview updating as you type.
+  - Contributor reputation scoring (+50 points per verified upload).
+
+- **Authentication & User Dashboard**:
+  - Google Sign-In and 1-Click Demo Profiles (Student & Topper).
+  - Saved bookmarks, upload management, and download history.
+
+---
+
+## 📂 Repository File Structure
+
+```text
+├── index.html                  # HTML entry point with typography & meta tags
+├── metadata.json               # App metadata & capabilities
+├── package.json                # Project dependencies and build scripts
+├── tsconfig.json               # TypeScript configuration
+├── vite.config.ts              # Vite bundler configuration with Tailwind CSS
+├── README.md                   # Project documentation & GitHub setup guide
+├── src/
+│   ├── main.tsx                # React DOM entry point
+│   ├── App.tsx                 # Root component orchestrating the 5 sections & modals
+│   ├── index.css               # Tailwind CSS & custom scrollbar styles
+│   ├── types/
+│   │   └── index.ts            # TypeScript interfaces (Note, User, Branch, Section)
+│   ├── data/
+│   │   ├── branchesData.ts     # Curriculum catalog & semester course units
+│   │   └── seedNotes.ts        # Verified study notes, formulas, and previews
+│   ├── context/
+│   │   ├── AuthContext.tsx     # Authentication, Google login, & user state
+│   │   └── NotesContext.tsx    # Notes library, search, filters, ratings, & downloads
+│   └── components/
+│       ├── Navbar.tsx          # Sticky glassmorphism header & search
+│       ├── HomeSection.tsx     # Landing page, hero search, & featured notes
+│       ├── BrowseNotesSection.tsx # Filterable library (branches, semesters, categories)
+│       ├── BranchesSection.tsx # Department explorer & 8-semester course guide
+│       ├── UploadNotesSection.tsx # Contributor publishing studio with live preview
+│       ├── MyAccountSection.tsx# User profile, saved bookmarks, & upload stats
+│       ├── NotePreviewModal.tsx# In-browser multi-page document viewer
+│       ├── AuthModal.tsx       # Sign in & 1-click demo login modal
+│       ├── Footer.tsx          # Academic directory footer
+│       ├── BranchIcon.tsx      # Dynamic branch icon renderer
+│       └── NoteCard.tsx        # Reusable note card with download & preview
+```
+
+---
+
+## 🚀 How to Run Locally
+
+### Prerequisites
+- Node.js (version 18 or higher)
+- npm or yarn
+
+### Installation Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/enginotes.git
+   cd enginotes
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 📤 How to Upload to GitHub
+
+### Method 1: Using the Terminal (Recommended)
+
+```bash
+# 1. Initialize git repository
+git init
+
+# 2. Add all files
+git add .
+
+# 3. Commit your changes
+git commit -m "Initial commit: Complete EngiNotes engineering platform"
+
+# 4. Rename default branch to main
+git branch -M main
+
+# 5. Connect your remote GitHub repository
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
+
+# 6. Push code to GitHub
+git push -u origin main
+```
+
+### Method 2: Direct GitHub Web UI Upload
+1. Open your GitHub repository in your browser.
+2. Click **Add file** > **Upload files**.
+3. Drag and drop the project folder contents (excluding `node_modules` and `dist`).
+4. Commit your changes.
+
+---
+
+## 🌐 How to Deploy to GitHub Pages (No Blank Page!)
+
+### Why Vite Apps Often Show a Blank Page on GitHub Pages:
+By default, Vite builds with root paths (`/assets/...`). Because GitHub Pages serves repositories under a subfolder path like `https://<username>.github.io/<repository-name>/`, requesting `/assets/...` returns a `404 Not Found`, preventing scripts from loading and resulting in a blank white screen.
+
+### How We Fixed It:
+1. **Relative Base Path**: `vite.config.ts` is configured with `base: './'`, so all assets load relatively on any GitHub Pages subfolder or custom domain.
+2. **Jekyll Bypass (`.nojekyll`)**: Located in `public/.nojekyll`, preventing GitHub Pages from ignoring bundled assets.
+3. **SPA Fallback (`404.html`)**: Included in `public/404.html` to avoid 404 errors on page reloads.
+4. **Client-side Fallbacks**: Offline dynamic answer and summarizer generators are included so the app remains 100% interactive on static GitHub Pages.
+
+### Option A: 1-Click Automated Deployment (GitHub Actions)
+1. Push your repository to GitHub:
+   ```bash
+   git push -u origin main
+   ```
+2. On GitHub, navigate to your repository **Settings** > **Pages** (in the left sidebar).
+3. Under **Build and deployment** > **Source**, choose **GitHub Actions**.
+4. The included `.github/workflows/deploy.yml` workflow will automatically run, build, and deploy your live site!
+
+### Option B: 1-Command Deploy via `gh-pages`
+1. Run:
+   ```bash
+   npm run deploy
+   ```
+2. In GitHub repository **Settings** > **Pages**, ensure **Source** is set to **Deploy from a branch** -> branch: `gh-pages` -> folder: `/ (root)`.
+3. Your site will be live in 1-2 minutes!
+
+---
+
+## 🛡️ License
+Distributed under the Apache-2.0 License.
+

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EngiNotes - College & Engineering Study Hub</title>
+    <script>
+      // Single Page App redirect for GitHub Pages custom domain or subpath
+      var path = window.location.pathname;
+      var repo = path.split('/')[1];
+      // Redirect to repository root with hash
+      if (repo && window.location.hostname.endsWith('github.io')) {
+        window.location.replace('/' + repo + '/');
+      } else {
+        window.location.replace('./');
+      }
+    </script>
+  </head>
+  <body style="background-color: #020617; color: #94a3b8; font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <div style="text-align: center;">
+      <h2 style="color: #38bdf8; margin-bottom: 8px;">EngiNotes Study Hub</h2>
+      <p>Redirecting to homepage...</p>
+    </div>
+  </body>
+</html>
